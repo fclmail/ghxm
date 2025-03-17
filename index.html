@@ -1,0 +1,73 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>High-Tech 3D Slot Counter</title>  
+    <style>  
+        body {  
+            background-color: #00008B; /* Dark Blue Background */  
+            display: flex;  
+            justify-content: center;  
+            align-items: center;  
+            height: 100vh;  
+            overflow: hidden;  
+            position: relative;  
+        }  
+        .counter-container {  
+            font-family: 'Arial', sans-serif;  
+            font-size: 4em;  
+            font-weight: bold;  
+            color: #00FFFF; /* Neon Blue */  
+            text-shadow: 0 0 15px #00FFFF;  
+            border: 10px solid #00FFFF; /* Thick Fluorescent Neon Blue Border */  
+            padding: 20px;  
+            border-radius: 20px;  
+            background: rgba(0, 0, 0, 0.8);  
+            position: absolute;  
+        }  
+        @keyframes spin {  
+            0% { transform: rotateX(0deg); }  
+            100% { transform: rotateX(360deg); }  
+        }  
+        .number {  
+            display: inline-block;  
+            min-width: 50px;  
+            text-align: center;  
+            animation: spin 0.1s linear infinite;  
+        }  
+        .multiplier-image {  
+            position: absolute;  
+            top: 5%; /* Adjusted to move the image closer to the counter */  
+            left: 50%;  
+            transform: translate(-50%, -50%); /* Center the image */  
+            width: 80px; /* Adjust size as needed */  
+            height: auto; /* Maintain aspect ratio */  
+        }  
+    </style>  
+</head>  
+<body>  
+    <div class="counter-container">  
+        $ <span id="counter">0</span>  
+        <img src="ghxmultiplier.gif" alt="Multiplier" class="multiplier-image">  
+    </div>  
+    <script>  
+        function spinCounter() {  
+            let counterElement = document.getElementById("counter");  
+            let count = 0;  
+            let interval = setInterval(() => {  
+                count = Math.floor(Math.random() * 150) + 1; // Spinning effect with only positive numbers  
+                counterElement.innerHTML = count;  
+            }, 50); // Very fast spinning effect  
+            
+            setTimeout(() => {  
+                clearInterval(interval);  
+                counterElement.innerHTML = "10000";  
+                setTimeout(spinCounter, 2000); // Loop repeating after stopping  
+            }, 3000); // Stop after 3 seconds  
+        }  
+
+        spinCounter(); // Start spinning on load  
+    </script>  
+</body>  
+</html>
